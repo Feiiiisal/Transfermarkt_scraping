@@ -281,9 +281,6 @@ def get_track(id):
         logger.error(f"Error fetching track {id}: {e}")
         return jsonify({"error": str(e)}), 500
 
-# Data Loading Endpoint (Removed CSV loading as per user request)
-# If you still want to keep it for flexibility, you can modify it to accept JSON data instead.
-
 # Utility Functions
 
 def parse_release_date(date_str):
