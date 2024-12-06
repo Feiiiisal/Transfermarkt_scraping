@@ -31,11 +31,15 @@ DB_HOST = os.getenv('DB_HOST')
 DB_PORT = os.getenv('DB_PORT', '5432')  # Default PostgreSQL port is 5432
 DB_NAME = os.getenv('DB_NAME')
 
+# Validate environment variables
 if not all([DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME]):
     logger.error("Database configuration is incomplete. Please check your environment variables.")
     raise Exception("Database configuration is incomplete. Please check your environment variables.")
 
+# Construct the DATABASE_URL
 DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+# Configure SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
